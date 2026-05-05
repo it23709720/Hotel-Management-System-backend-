@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
+import mongoose from 'mongoose';
+import bcrypt from 'bcryptjs';
 
 // ── USER (Staff) ──
 const userSchema = new mongoose.Schema({
@@ -151,17 +151,30 @@ const feedbackSchema = new mongoose.Schema({
     suggestions: String
 }, { timestamps: true });
 
-module.exports = {
-    User:         mongoose.model('User', userSchema),
-    Client:       mongoose.model('Client', clientSchema),
-    LoginLog:     mongoose.model('LoginLog', loginLogSchema),
-    RoomType:     mongoose.model('RoomType', roomTypeSchema),
-    Room:         mongoose.model('Room', roomSchema),
-    Maintenance:  mongoose.model('Maintenance', maintenanceSchema),
-    Reservation:  mongoose.model('Reservation', reservationSchema),
-    Bill:         mongoose.model('Bill', billSchema),
-    Hall:         mongoose.model('Hall', hallSchema),
-    EventPackage: mongoose.model('EventPackage', eventPackageSchema),
-    Event:        mongoose.model('Event', eventSchema),
-    Feedback:     mongoose.model('Feedback', feedbackSchema)
+const User = mongoose.model('User', userSchema);
+const Client = mongoose.model('Client', clientSchema);
+const LoginLog = mongoose.model('LoginLog', loginLogSchema);
+const RoomType = mongoose.model('RoomType', roomTypeSchema);
+const Room = mongoose.model('Room', roomSchema);
+const Maintenance = mongoose.model('Maintenance', maintenanceSchema);
+const Reservation = mongoose.model('Reservation', reservationSchema);
+const Bill = mongoose.model('Bill', billSchema);
+const Hall = mongoose.model('Hall', hallSchema);
+const EventPackage = mongoose.model('EventPackage', eventPackageSchema);
+const Event = mongoose.model('Event', eventSchema);
+const Feedback = mongoose.model('Feedback', feedbackSchema);
+
+export {
+    User,
+    Client,
+    LoginLog,
+    RoomType,
+    Room,
+    Maintenance,
+    Reservation,
+    Bill,
+    Hall,
+    EventPackage,
+    Event,
+    Feedback
 };

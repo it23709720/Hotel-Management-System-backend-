@@ -1,9 +1,11 @@
-const router = require('express').Router();
-const jwt = require('jsonwebtoken');
-const nodemailer = require('nodemailer');
-const { User, Client, LoginLog } = require('../models');
-const { authenticate } = require('../middleware/auth');
-require('dotenv').config();
+import { Router } from 'express';
+import jwt from 'jsonwebtoken';
+import nodemailer from 'nodemailer';
+import { User, Client, LoginLog } from '../models/index.js';
+import { authenticate } from '../middleware/auth.js';
+import 'dotenv/config';
+
+const router = Router();
 
 const transporter = nodemailer.createTransport({
     host: process.env.EMAIL_HOST,
@@ -146,4 +148,4 @@ router.post('/logout', authenticate, async (req, res) => {
     } catch (err) { res.status(500).json({ success: false, message: err.message }); }
 });
 
-module.exports = router;
+export default router;

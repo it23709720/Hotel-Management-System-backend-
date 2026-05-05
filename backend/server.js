@@ -1,8 +1,16 @@
-const express = require('express');
-const cors = require('cors');
-const path = require('path');
-const connectDB = require('./config/db');
-require('dotenv').config();
+import dns from "node:dns";
+dns.setDefaultResultOrder("ipv4first");
+dns.setServers(["8.8.8.8", "8.8.4.4"]);
+
+import express from 'express';
+import cors from 'cors';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import connectDB from './config/db.js';
+import 'dotenv/config';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 
@@ -15,11 +23,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // API Routes
-const authRoutes = require('./routes/auth');
-const userRoutes = require('./routes/users');
-const roomRoutes = require('./routes/rooms');
-const reservationRoutes = require('./routes/reservations');
-const { guestsRouter, billingRouter, eventsRouter, feedbackRouter, reportsRouter } = require('./routes/other');
+import authRoutes from './routes/auth.js';
+import userRoutes from './routes/users.js';
+import roomRoutes from './routes/rooms.js';
+import reservationRoutes from './routes/reservations.js';
+import { guestsRouter, billingRouter, eventsRouter, feedbackRouter, reportsRouter } from './routes/other.js';
 
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
